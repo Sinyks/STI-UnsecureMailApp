@@ -21,3 +21,13 @@ CREATE TABLE Message(
                     ON DELETE CASCADE
 
 );
+
+-- insertion
+
+INSERT INTO Coworker (Username,Validity,Password,HasAdminPrivilege)
+VALUES
+    ('Sacha',1, 1234,1),
+    ('Alban',1, 1234,1),
+    ('Steve',1, 1234,0),
+    ('Daniel',0, 1234,0),
+    ('Capucine',1, 1234,0);

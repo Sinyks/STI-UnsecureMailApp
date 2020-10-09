@@ -1,12 +1,14 @@
+<?php include_once ('./fragements/header.php');?>
+
+<?php include_once ('./fragements/dbConnection.php');?>
+
 <?php
+    // if (isset($_SESSION['logged_in']) && isset($_SESSION['logged_in']) == true){
+       // header("Location : homepage");
+    //}
+ ?>
 
-include_once ('./fragements/header.php');
-
-//phpinfo();
-
-?>
 <link rel="stylesheet" href="./css/login.css">
-<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
@@ -17,7 +19,7 @@ include_once ('./fragements/header.php');
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
+            <form class="form-signin" action="./action_page.php" method="post">
               <div class="form-label-group">
                 <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                 <label for="inputUsername">username</label>
@@ -38,9 +40,4 @@ include_once ('./fragements/header.php');
   </div>
 </body>
 
-
-<?php
-
-include_once ('./fragements/footer.php')
-
-?>
+<?php include_once ('./fragements/footer.php') ?>

@@ -1,9 +1,8 @@
 <?php
-
-// include_once ('include/DBfunction.php');
-
-// $db = new useDB();
-
+    // Set default timezone
+    date_default_timezone_set('UTC');
+    include_once('./Singleton.php');
+    $singleton = new singleton()
 ?>
 
 <!doctype html>

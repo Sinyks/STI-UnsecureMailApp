@@ -1,15 +1,28 @@
 <?php
-
 include_once ('./fragements/header.php');
-
-//phpinfo();
-
 ?>
 
 <div class="starter-template">
-    <h1> Welcome </h1>
-    <a href="login.php">signin</a>
-    <a href="register.php">register</a>
+    <h1> Welcome to the  beautiful index page</h1>
+    <?php
+    try {
+
+        // Create (connect to) SQLite database in file
+        $file_db = new PDO('sqlite:/usr/share/nginx/databases/database.sqlite');
+        // Set errormode to exceptions
+        $file_db->setAttribute(PDO::ATTR_ERRMODE,
+            PDO::ERRMODE_EXCEPTION);
+
+    } catch (PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $result = $singleton->deleteUserById(7);
+
+    print_r($result);
+
+    ?>
+
 </div>
 
 <?php include_once ('./fragements/footer.php'); ?>
