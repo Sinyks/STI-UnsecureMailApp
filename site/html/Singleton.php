@@ -19,6 +19,7 @@ class singleton
         {
             $this->objConnection = new PDO($databaseName);
             $this->objConnection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $this->objConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         }
         catch(PDOException $e)
         {

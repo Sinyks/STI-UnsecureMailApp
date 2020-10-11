@@ -17,7 +17,7 @@ include_once ('./fragements/header.php');
         echo $e->getMessage();
     }
 
-    $result = $singleton->deleteUserById(7);
+    $result = $singleton->getUsers();
 
     print_r($result);
 
