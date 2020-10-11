@@ -1,8 +1,5 @@
 <?php
-    // Set default timezone
-    date_default_timezone_set('UTC');
-    include_once('./Singleton.php');
-    $singleton = new singleton()
+include_once("utility.php");
 ?>
 
 <!doctype html>
