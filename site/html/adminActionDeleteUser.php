@@ -1,10 +1,10 @@
 <?php
-// Set default timezone
-date_default_timezone_set('UTC');
-include_once('./Singleton.php');
-$singleton = new singleton()
+include_once('./fragements/header.php');
 ?>
 
+
+<body class="starter-template">
+<h1> Espace Administrateur</h1>
 <?php
 try {
 
@@ -18,10 +18,18 @@ try {
     echo $e->getMessage();
 }
 
-$result = $singleton->getUsers();
-
 ?>
 
+<div>
+    salut
 <?php
-
+try {
+    $singleton->deleteUserById(6);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 ?>
+    salut
+</div>
+
+

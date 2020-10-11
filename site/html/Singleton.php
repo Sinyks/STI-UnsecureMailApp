@@ -57,7 +57,7 @@ class singleton
         $query = $this->objConnection->prepare($sql);
 
         $query->bindValue(':value',$value);
-        $query->bindValue(':field',$value);
+        $query->bindValue(':field',$field); // changed $value to $field as this is certeinly an error
         $query->execute();
 
         return $query->fetchAll();

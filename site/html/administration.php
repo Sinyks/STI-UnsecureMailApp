@@ -24,7 +24,7 @@ $result = $singleton->getUsers();
 
 <?php
 
-echo "<body>";
+
 
 echo "<div class='col-sm text-center p-3 mb-2'>";
 
@@ -98,9 +98,13 @@ foreach ($result as $user) {
     echo "<div class='col-sm text-center'>";
 
 
-    echo "<button type='button' class='btn btn-danger'>";
+
+
+    echo "<form action='/account/adminAction/adminActionDeleteUser.php' method='get'>";
+    echo "<button type='submit' class='btn btn-danger' name='id' value='$user->id'>";
     echo "Supprimer";
     echo "</button>";
+    echo "</form>";
 
     echo "</div>";
 
