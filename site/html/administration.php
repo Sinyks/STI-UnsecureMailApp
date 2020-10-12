@@ -22,101 +22,88 @@ $result = $singleton->getUsers();
 
 ?>
 
-<?php
+<div class='col-sm text-center p-3 mb-2'>
+
+    <button type='button' class='btn btn-primary btn-lg'>
+        "Ajouter un nouveau collaborateur"
+    </button>
+</div>
 
 
+<?php foreach ($result as $user) { ?>
+<div class='row p-3 mb-2 align-items-center bg-info text-white'>
 
-echo "<div class='col-sm text-center p-3 mb-2'>";
+    <div class='col-sm text-center'>
 
-echo "<button type='button' class='btn btn-primary btn-lg'>";
-echo "Ajouter un nouveau collaborateur";
-echo "</button>";
-echo "</div>";
+        <bold class='font-weight-bold'>
+            Utilisateur</br>
+        </bold>
 
+        <?php $user->Username . " ";?>
 
-foreach ($result as $user) {
-    echo "<div class='row p-3 mb-2 align-items-center bg-info text-white'>";
-
-    echo "<div class='col-sm text-center'>";
-
-    echo "<bold class='font-weight-bold'>";
-    echo "Utilisateur</br>"; // non modifiable
-    echo "</bold>";
-
-    echo $user->Username . " ";
+    </div>
+    <div class='col-sm text-center'>
 
 
-    echo "</div>";
-    echo "<div class='col-sm text-center'>";
+        <bold class='font-weight-bold'>
+            Validité</br>
+        </bold>
+
+        <?php
+        if ($user->Validity == 1) {
+            echo "oui ";
+        } else {
+            echo "non ";
+        }
+        ?>
+    </div>
+    <div class='col-sm text-center'>
+
+        <bold class='font-weight-bold'>
+            Mot de passe Hashé?</br>
+        </bold>
+
+        <?php $user->Password . " ";?>
+
+    </div>
+    <div class='col-sm text-center'>
+
+        <bold class='font-weight-bold'>
+            Admin</br>
+        </bold>
+        <?php
+        if ($user->HasAdminPrivilege) {
+            echo "Admin";
+        } else {
+            echo "Collaborateur ";
+        }
+        ?>
+
+    </div>
+
+    <div class='col-sm text-center'>
+
+        <button type='button' class='btn btn-warning'>
+            Modifier
+        </button>
+
+    </div>
+
+    <div class='col-sm text-center'>
 
 
-    echo "<bold class='font-weight-bold'>";
-    echo "Validité</br>";
-    echo "</bold>";
+        <form action='/account/adminAction/adminActionDeleteUser.php' method='get'>
+            <button type='submit' class='btn btn-danger' name='id' value='$user->id'>
+                Supprimer
+            </button>
+        </form>
 
+    </div>
 
-    if ($user->Validity == 1) {
-        echo "oui ";
-    } else {
-        echo "non ";
-    }
+<?php }//end foreach ?>
+</div>
 
-    echo "</div>";
-    echo "<div class='col-sm text-center'>";
-
-    echo "<bold class='font-weight-bold'>";
-    echo "Mot de passe Hashé?</br>";
-    echo "</bold>";
-
-    echo $user->Password . " ";
-
-    echo "</div>";
-    echo "<div class='col-sm text-center'>";
-
-    echo "<bold class='font-weight-bold'>";
-    echo "Admin</br>";
-    echo "</bold>";
-
-    if ($user->HasAdminPrivilege == 1) {
-        echo "Admin";
-    } else {
-        echo "Collaborateur ";
-    }
-
-
-    echo "</div>";
-
-    echo "<div class='col-sm text-center'>";
-
-
-    echo "<button type='button' class='btn btn-warning'>";
-    echo "Modifier";
-    echo "</button>";
-
-    echo "</div>";
-
-    echo "<div class='col-sm text-center'>";
-
-
-
-
-    echo "<form action='/account/adminAction/adminActionDeleteUser.php' method='get'>";
-    echo "<button type='submit' class='btn btn-danger' name='id' value='$user->id'>";
-    echo "Supprimer";
-    echo "</button>";
-    echo "</form>";
-
-    echo "</div>";
-
-
-    echo "</div>";
-
-}
-
-echo "</div>";
-
-
-?>
+</div>
 
 </body>
 
