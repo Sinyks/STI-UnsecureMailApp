@@ -1,10 +1,7 @@
 <?php
-include_once('./fragements/header.php');
+include_once("utility.php");
 ?>
 
-
-<body class="starter-template">
-<h1> Espace Administrateur</h1>
 <?php
 try {
 
@@ -20,16 +17,13 @@ try {
 
 ?>
 
-<div>
-    salut
 <?php
 try {
-    $singleton->deleteUserById(6);
+    $singleton->deleteUserById($_GET["id"]);
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+header("location: ./administration.php");
 ?>
-    salut
-</div>
 
 

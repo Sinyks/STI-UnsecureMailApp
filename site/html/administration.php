@@ -165,7 +165,7 @@ $result = $singleton->getUsers();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <form action='/index.php' method='get'>
+                            <form action='/delete_user_action.php' method='get'>
                                 <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id?>'>Supprimer</button>
                             </form>
                         </div>
