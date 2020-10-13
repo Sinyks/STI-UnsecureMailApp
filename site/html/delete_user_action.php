@@ -12,7 +12,10 @@ try {
         PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    $_SESSION['message'] = $e->getMessage();
+    header("location: error.php");
+    exit;
+
 }
 
 ?>
@@ -21,7 +24,10 @@ try {
 try {
     $singleton->deleteUserById($_GET["id"]);
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    $_SESSION['message'] = $e->getMessage();
+    header("location: error.php");
+    exit;
+
 }
 header("location: ./administration.php");
 ?>

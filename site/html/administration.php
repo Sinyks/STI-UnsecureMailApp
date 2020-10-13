@@ -78,16 +78,16 @@ $result = $singleton->getUsers();
 
             <?php
             if ($user->Validity == 1) {
-                echo "oui";
+                echo "Valide";
             } else {
-                echo "non";
+                echo "Invalide";
             }
             ?>
         </div>
         <div class='col-sm text-center text-white'>
 
             <bold class='font-weight-bold'>
-                Mot de passe Hashé?</br>
+                Hash du mot de passe</br>
             </bold>
 
             <?php echo $user->Password; ?>
@@ -96,7 +96,7 @@ $result = $singleton->getUsers();
         <div class='col-sm text-center text-white'>
 
             <bold class='font-weight-bold'>
-                Admin</br>
+                Type d'utilisateur</br>
             </bold>
             <?php
             if ($user->HasAdminPrivilege) {
@@ -111,28 +111,37 @@ $result = $singleton->getUsers();
         <div class='col-sm text-center'>
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal<?php echo $user->id?>">
+            <button type="button" class="btn btn-warning" data-toggle="modal"
+                    data-target="#updateModal<?php echo $user->id ?>">
                 Modifier
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="updateModal<?php echo $user->id?>" tabindex="-1" role="dialog" aria-labelledby="updateModal<?php echo $user->id?>Label"
+            <div class="modal fade" id="updateModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
+                 aria-labelledby="updateModal<?php echo $user->id ?>Label"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title " id="updateModal<?php echo $user->id?>Label"><?php echo $user->Username ?></h5>
+                            <h5 class="modal-title "
+                                id="updateModal<?php echo $user->id ?>Label"><?php echo $user->Username ?></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            inserer form ici ?
+
+                            <?php
+                            include('./form/userFormUpdate.php');
+                            ?>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                             <form action='/index.php' method='post'> <!-- voir comment faire un post-->
-                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id?>'>Modifier</button>
+                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
+                                    Modifier
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -145,17 +154,19 @@ $result = $singleton->getUsers();
 
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $user->id?>">
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#deleteModal<?php echo $user->id ?>">
                 Supprimer
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="deleteModal<?php echo $user->id?>" tabindex="-1" role="dialog" aria-labelledby="deleteModal<?php echo $user->id?>Label"
+            <div class="modal fade" id="deleteModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
+                 aria-labelledby="deleteModal<?php echo $user->id ?>Label"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title " id="deleteModal<?php echo $user->id?>Label">Confirmation</h5>
+                            <h5 class="modal-title " id="deleteModal<?php echo $user->id ?>Label">Confirmation</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -166,7 +177,9 @@ $result = $singleton->getUsers();
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                             <form action='/delete_user_action.php' method='get'>
-                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id?>'>Supprimer</button>
+                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
+                                    Supprimer
+                                </button>
                             </form>
                         </div>
                     </div>
