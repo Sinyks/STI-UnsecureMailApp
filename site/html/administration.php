@@ -25,12 +25,14 @@ $result = $singleton->getUsers();
 <div class='col-sm text-center p-3 mb-2'>
 
     <button type='button' class='btn btn-primary btn-lg'>
-        "Ajouter un nouveau collaborateur"
+        Ajouter un nouveau collaborateur
     </button>
 </div>
 
 
-<?php foreach ($result as $user) { ?>
+<?php foreach ($result
+
+as $user) { ?>
 <div class='row p-3 mb-2 align-items-center bg-info text-white'>
 
     <div class='col-sm text-center'>
@@ -39,7 +41,7 @@ $result = $singleton->getUsers();
             Utilisateur</br>
         </bold>
 
-        <?php $user->Username . " ";?>
+        <?php echo $user->Username; ?>
 
     </div>
     <div class='col-sm text-center'>
@@ -51,9 +53,9 @@ $result = $singleton->getUsers();
 
         <?php
         if ($user->Validity == 1) {
-            echo "oui ";
+            echo "oui";
         } else {
-            echo "non ";
+            echo "non";
         }
         ?>
     </div>
@@ -63,7 +65,7 @@ $result = $singleton->getUsers();
             Mot de passe Hashé?</br>
         </bold>
 
-        <?php $user->Password . " ";?>
+        <?php echo $user->Password; ?>
 
     </div>
     <div class='col-sm text-center'>
@@ -75,7 +77,7 @@ $result = $singleton->getUsers();
         if ($user->HasAdminPrivilege) {
             echo "Admin";
         } else {
-            echo "Collaborateur ";
+            echo "Collaborateur";
         }
         ?>
 
@@ -99,11 +101,12 @@ $result = $singleton->getUsers();
         </form>
 
     </div>
-
-<?php }//end foreach ?>
 </div>
 
+    <?php }//end foreach ?>
 </div>
+
+
 
 </body>
 
