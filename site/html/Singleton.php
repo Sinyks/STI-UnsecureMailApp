@@ -1,7 +1,7 @@
 <?php
 
 
-class singleton
+class Singleton
 {
 
     /** @var  PDO Statement */
@@ -19,7 +19,7 @@ class singleton
         {
             $this->objConnection = new PDO($databaseName);
             $this->objConnection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $this->objConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+            $this->objConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
         }
         catch(PDOException $e)
         {
@@ -52,17 +52,6 @@ class singleton
         return $query->fetchAll();
     }
 
-    private function getUserByValue($field,$value){
-        $sql = "SELECT * FROM Coworker WHERE :field = :value";
-        $query = $this->objConnection->prepare($sql);
-
-        $query->bindValue(':value',$value);
-        $query->bindValue(':field',$field); // changed $value to $field as this is certeinly an error
-        $query->execute();
-
-        return $query->fetchAll();
-    }
-
     /**
      * that were too easy
      * @param $string
@@ -78,17 +67,24 @@ class singleton
     }
 
     public function getUserByUsername($username){
+        $sql = "SELECT * FROM Coworker WHERE Username = :value";
 
-        $result = $this->getUserByValue("Username",$this->homeMadeSQLSanitier($username));
+        $query = $this->objConnection->prepare($sql);
+        $query->bindValue(':value',$username);
+        $query->execute();
 
-        return $result[0];
+        return $query->fetch();
     }
 
     public function getUserById($id){
 
-        $result = $this->getUserByValue("id",$this->homeMadeSQLSanitier($id));
+        $sql = "SELECT * FROM Coworker WHERE id = :value";
 
-        return $result[0];
+        $query = $this->objConnection->prepare($sql);
+        $query->bindValue(':value',$id);
+        $query->execute();
+
+        return $query->fetch();
 
     }
 
@@ -161,6 +157,17 @@ class singleton
         $query->bindValue(":validity",$this->homeMadeSQLSanitier($newValidity));
         $query->bindValue(":hasadminprivilege",$this->homeMadeSQLSanitier($newHasAdminPrivilege));
         $query->execute();
+    }
+
+    public function isAdmin($id){
+        $user = $this->getUserById($id);
+
+        if(empty($user)){
+            return (bool) $user->HasAdminPrivilege;
+        }else{
+            return null;
+        }
+
     }
 
     /////////////////////////Exemples//////////////////////////////////////////////////
