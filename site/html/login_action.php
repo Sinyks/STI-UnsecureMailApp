@@ -17,7 +17,7 @@ if ($user){
         // user is correct
         $_SESSION["id"] = $user->id;
         $_SESSION["logged_in"] = true;
-        header("location: ./index.php");
+        header("location: ./account/dashboard.php");
     } else {
         $_SESSION['message'] = "informations incorrect";
         header("location: error.php");
@@ -26,9 +26,3 @@ if ($user){
     $_SESSION['message'] = "nobody";
     header("location: error.php");
 }
-
-
-
-
-
-
