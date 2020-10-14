@@ -92,7 +92,7 @@ class Singleton
         $sql = "SELECT * FROM Message WHERE Message.Receiver = :id";
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(':id',$this->homeMadeSQLSanitier($id));
+        $query->bindValue(':id',$id);
         $query->execute();
 
         return $query->fetchAll();

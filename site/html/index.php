@@ -12,6 +12,8 @@ include_once ('./fragements/header.php');
             echo "<h4>Your are admin</h4>";
         }
     }
+    $messages = $singleton->getReceivedMessagesByReceiverId(1);
+    print_r($messages);
 
     ?>
 
