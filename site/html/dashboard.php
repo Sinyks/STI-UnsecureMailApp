@@ -8,6 +8,12 @@ if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in']
 $id = $_SESSION['id'];
 try {
     $messages = $singleton->getReceivedMessagesByReceiverId($id);
+    usort($messages,function ($a,$b){
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a < $b) ? 1 : -1;
+    });
 }catch (PDOException $e){
     $_SESSION["message"] = $e->getMessage();
     header("location: error.php");
@@ -31,7 +37,7 @@ try {
                     }catch (PDOException $e){
                         echo $e->getMessage();
                     }
-                    echo "Sujet: ".$message->Subject."</br> De : ".$nameSender->Username."</br>Reçu le : ".date("d.m.Y h:m",$message->ReceptionDate)?>
+                    echo "Sujet: ".$message->Subject."</br> De : ".$nameSender->Username."</br>Reçu le : ".date("d.m.Y h:m:s",$message->ReceptionDate)?>
                 </button>
             </h5>
         </div>
