@@ -16,7 +16,12 @@ if (!$singleton->getMessageById($idMessage)){
     header("location: error.php");
     exit;
 }
-
-$singleton->deleteMessageById($idMessage);
+try {
+    $singleton->deleteMessageById($idMessage);
+}   catch(PDOException $e) {
+    $_SESSION["message"] = $e->getMessage();
+    header("location: error.php");
+    exit;
+}
 
 header("location: dashboard.php");
