@@ -36,23 +36,28 @@ $result = $singleton->getUsers();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title " id="createModalLabel">Confirmation</h5>
+                    <h5 class="modal-title " id="createModalLabel">Nouvel utilisateur</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    create form?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <form action='/index.php' method='get'>
-                        <button type="submit" class="btn btn-primary" name='id' value='69'>Creer</button>
-                    </form>
-                </div>
+                <form action="./create_user_action.php" method="post">
+
+                    <div class="modal-body">
+
+                        <?php
+                        include('./form/userFormCreate.php');
+                        ?>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary" >Creer</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 
