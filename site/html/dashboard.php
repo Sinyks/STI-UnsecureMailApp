@@ -1,7 +1,7 @@
 <?php
-
-if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
-  header('location : ./loginForm.php');
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+    header("location: ./loginForm.php");
+    exit;
 }
 include_once('./fragements/header.php');
 
@@ -31,7 +31,7 @@ try {
                     }catch (PDOException $e){
                         echo $e->getMessage();
                     }
-                    echo "Subject: ".$message->Subject."</br> From: ".$nameSender->Username."</br>Reçu le : ".date("Y/m/d",$message->ReceptionDate)?>
+                    echo "Sujet: ".$message->Subject."</br> De : ".$nameSender->Username."</br>Reçu le : ".date("d.m.Y h:m",$message->ReceptionDate)?>
                 </button>
             </h5>
         </div>
@@ -66,5 +66,14 @@ try {
         <?php include("./messageForm.php")?>
     </div>
 </div>
+
+<div class="card-body">
+    <form method="post" action="password_update_action.php">
+        <label for="">Changement de mot de passe</label>
+        <input name = passwordChange type="password">
+        <button class="btn btn-primary" type="submit">appliquer</button>
+    </form>
+</div>
+
 
 <?php include_once('./fragments/footer.php');  ?>
