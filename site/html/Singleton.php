@@ -192,7 +192,7 @@ class Singleton
     public function isAdmin($id){
         $user = $this->getUserById($id);
 
-        if(empty($user)){
+        if(!empty($user)){
             return (bool) $user->HasAdminPrivilege;
         }else{
             return null;

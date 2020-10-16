@@ -2,6 +2,22 @@
 include_once('./fragements/header.php');
 ?>
 
+<?php
+
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
+
+    header("location: ./loginForm.php");
+    exit;
+} else {
+    if (!$singleton->isAdmin($_SESSION["id"])) {
+        header("location: ./dashboard.php");
+        exit;
+    }
+}
+
+
+?>
+
 
 <body class="starter-template">
 <h1 class="text-center"> Espace Administrateur</h1>
