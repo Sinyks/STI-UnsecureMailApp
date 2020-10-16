@@ -3,7 +3,7 @@
 
 include_once('./fragements/header.php');
 
-if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
     header("location: ./index.php");
     exit;
 }
@@ -19,7 +19,7 @@ $id = $_SESSION["id"];
 $newpass = $_POST["passwordChange"];
 
 try {
-    $singleton->updatePasswordById($id,$newpass);
+    $singleton->updatePasswordById($id, $newpass);
 } catch (PDOException $e) {
     $_SESSION["message"] = $e->getMessage();
     header("location: error.php");

@@ -18,14 +18,14 @@ if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in']
 ?>
 
 <?php
-    try {
-       $singleton->updateUserById($_POST["id"],$_POST["passwordUnhashed"],$_POST["validityRadios"],$_POST["adminRadios"]);
-    } catch (PDOException $e) {
-        $_SESSION['message'] = $e->getMessage();
-        header("location: error.php");
-        exit;
+try {
+    $singleton->updateUserById($_POST["id"], $_POST["passwordUnhashed"], $_POST["validityRadios"], $_POST["adminRadios"]);
+} catch (PDOException $e) {
+    $_SESSION['message'] = $e->getMessage();
+    header("location: error.php");
+    exit;
 
-    }
-    header("location: ./administration.php");
-    ?>
+}
+header("location: ./administration.php");
+?>
 

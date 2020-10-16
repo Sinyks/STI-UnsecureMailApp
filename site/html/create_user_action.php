@@ -17,13 +17,13 @@ if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in']
 
 <?php
 try {
-    $singleton->createUser($_POST["username"],$_POST["passwordUnhashed"],$_POST["validityRadios"],$_POST["adminRadios"]);
+    $singleton->createUser($_POST["username"], $_POST["passwordUnhashed"], $_POST["validityRadios"], $_POST["adminRadios"]);
 } catch (PDOException $e) {
     $_SESSION['message'] = $e->getMessage();
     header("location: error.php");
     exit;
 }
- header("location: ./administration.php");
+header("location: ./administration.php");
 ?>
 
 
