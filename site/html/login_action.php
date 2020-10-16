@@ -9,8 +9,13 @@ if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])){
 }
 
 // print_r($_POST);
-
+try {
 $user = $singleton->getUserByUsername($_POST["inputUsername"]);
+}catch (PDOException $e){
+    $_SESSION["message"] = $e->getMessage();
+    header("location: error.php");
+    exit;
+}
 
 if ($user){
     if ($user->Username == $_POST["inputUsername"] && $user->Password == $_POST["inputPassword"]) {

@@ -19,7 +19,13 @@ $messages = $singleton->getReceivedMessagesByReceiverId($id);
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="<?php echo "#".$collapse ?>" aria-expanded="true" aria-controls="<?php echo $collapse?>">
-                    <?php echo $message->Subject." From: ".$message->Sender?>
+                    <?php
+                    try {
+                        $nameSender = $singleton->getUsernameById($message->Sender);
+                    }catch (PDOException $e){
+                        echo $message;
+                    }
+                    echo "Subject: ".$message->Subject."</br> From: ".$nameSender->Username ?>
                 </button>
             </h5>
         </div>
@@ -43,9 +49,15 @@ $messages = $singleton->getReceivedMessagesByReceiverId($id);
     </div>
     <?php }?>
 </div>
-<div class="container">
-    <a href="./createMessageForm.php" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Nouveau Message</a></button>
-</div>
 
+<button class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#MessageForm" aria-expanded="true" aria-controls="MessageForm">
+    Nouveau Message
+</button>
+
+<div id="MessageForm" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div class="card-body">
+        <?php include("./form/messageForm.php")?>
+    </div>
+</div>
 
 <?php include_once('./fragments/footer.php');  ?>

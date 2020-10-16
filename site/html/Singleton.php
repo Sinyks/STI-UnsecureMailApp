@@ -76,6 +76,15 @@ class Singleton
         return $query->fetch();
     }
 
+    public function getUsernameById($id){
+        $sql = "SELECT Username FROM Coworker WHERE id = :value";
+        $query = $this->objConnection->prepare($sql);
+        $query->bindValue(':value',$id);
+        $query->execute();
+
+        return $query->fetch();
+    }
+
     public function getUserById($id){
 
         $sql = "SELECT * FROM Coworker WHERE id = :value";
