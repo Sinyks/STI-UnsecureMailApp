@@ -13,7 +13,7 @@ if (isset($_SESSION["message"]) && !empty($_SESSION["message"])) {
 
             <h1>Error</h1>
 			<h4> <?php echo $message ?> </h4>
-			<a href="#">Back To Home</a>
+			<a href="/">Back To Home</a>
 		</div>
     </div>
 
