@@ -87,15 +87,28 @@ La console d'adminitration n'est visible que si vous êtes administrateur.
 
 En vous y rendant vous aurez la possibilité d'administrer,créer et supprimer des utilisateurs de l'application.
 
+![AdminOverview](./img/adminOverview.png)
+
 ### Création d'utilisateur
 
-![AdminOverview](./img/adminOverview.png)
+Le formulaire de création apparait lorsque l'on presse le bouton de creation d'utilisateur
+
 
 ![admincreate](./img/adminCreate.png)
 
+
 ### Suppression d'utilisateur
+
 __Attention la suppresssion d'un utilisateur est définitive__
 
+Pour supprimmer un utilisateur il faut presser le bouton rouge qui va déployer un message de confirmation en dessous de la boite de l'utilisateur.
+
+### Modification d'utilisateur
+
+Pour modifier un utilisateur il faut presser le bouton jaune qui va déployer le formulaire de modification en dessous de la boite de l'utilisateur. Le nom d'utilisateur n'est pas modifiable et est grisé.
+
 ![adminupdatedelete](./img/adminUpdateDelete.png)
+
+
 
 
