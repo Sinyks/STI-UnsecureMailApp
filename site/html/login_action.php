@@ -2,7 +2,7 @@
 include_once("utility.php");
 
 // check if POST is set correctly
-if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])){
+if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])) {
     $_SESSION['message'] = "l'utilisateur n'existe pas";
     header("location: error.php");
     exit;
@@ -10,15 +10,15 @@ if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])){
 
 try {
     $user = $singleton->getUserByUsername($_POST["inputUsername"]);
-}catch (PDOException $e){
+} catch (PDOException $e) {
     $_SESSION["message"] = $e->getMessage();
     header("location: error.php");
     exit;
 }
 
-if ($user){
+if ($user) {
     if ($user->Username == $_POST["inputUsername"] && $user->Password == $_POST["inputPassword"]) {
-        if ($user->Validity == 0){
+        if ($user->Validity == 0) {
             $_SESSION['message'] = "Validité dépassé";
             header("location: error.php");
             exit;

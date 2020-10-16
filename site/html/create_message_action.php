@@ -2,7 +2,7 @@
 
 include_once('./fragements/header.php');
 
-if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
     header("location: ./index.php");
     exit;
 }
@@ -15,15 +15,14 @@ if (!isset($_POST["SelectReceiver"]) || !isset($_POST["Subject"]) || !isset($_PO
 }
 
 
-
 $idSender = $_SESSION["id"];
 $idReceiver = $_POST["SelectReceiver"];
 $subject = $_POST["Subject"];
 $content = $_POST["Content"];
 
 try {
-    $singleton->createMessage($idSender,$idReceiver,$content,$subject);
-}   catch(PDOException $e) {
+    $singleton->createMessage($idSender, $idReceiver, $content, $subject);
+} catch (PDOException $e) {
     $_SESSION["message"] = $e->getMessage();
     header("location: error.php");
     exit;
