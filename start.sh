@@ -8,6 +8,7 @@ then
   docker rm $(docker stop $(docker ps -aq --filter "name=${containerName}"))
 fi
 
+chmod -R a+wX site/databases/
 
 docker run -ti -v "$PWD/site":/usr/share/nginx/ -d -p 8080:80 --name sti_project --hostname sti arubinst/sti:project2018
 
