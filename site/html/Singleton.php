@@ -179,17 +179,5 @@ class Singleton
 
     }
 
-    /////////////////////////Exemples//////////////////////////////////////////////////
-    public function getAllAlbums()
-    {
-        $result = $this->executeSqlRequest("SELECT idAlbum, albTitle, artName, albReleaseDate, catName
-    FROM t_album
-    INNER JOIN t_belong ON idfkAlbum = idAlbum
-    INNER JOIN t_track ON idTrack = t_belong.idfkTrack
-    INNER JOIN t_interpret ON t_interpret.idfkTrack = idTrack
-    INNER JOIN t_artist ON idfkArtist = idArtist
-    INNER JOIN t_category ON t_category.idCategory = t_track.fkCategory;");
-        return $result;
-    }
 
 }

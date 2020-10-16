@@ -27,10 +27,11 @@ try {
                     <?php
                     try {
                         $nameSender = $singleton->getUsernameById($message->Sender);
+
                     }catch (PDOException $e){
-                        echo $message;
+                        echo $e->getMessage();
                     }
-                    echo "Subject: ".$message->Subject."</br> From: ".$nameSender->Username ?>
+                    echo "Subject: ".$message->Subject."</br> From: ".$nameSender->Username."</br>Reçu le : ".date("Y/m/d",$message->ReceptionDate)?>
                 </button>
             </h5>
         </div>
