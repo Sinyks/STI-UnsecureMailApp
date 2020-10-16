@@ -1,9 +1,9 @@
 <?php
+include_once('./fragements/header.php');
 if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
     header("location: ./loginForm.php");
     exit;
 }
-include_once('./fragements/header.php');
 
 $id = $_SESSION['id'];
 try {
