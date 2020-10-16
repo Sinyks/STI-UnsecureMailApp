@@ -36,7 +36,7 @@ Les personnes suivantes existent déjà dans la base de donnée: (__Attention à
 | Sacha             | 1234         | Administrateur | valide   |
 | Alban             | 1234         | Administrateur | valide   |
 | Steve             | 1234         | Collaborateur  | valide   |
-| Daniel            | 1234         | Collaborateur  | invalid  |
+| Daniel            | 1234         | Collaborateur  | invalide |
 
 
 
