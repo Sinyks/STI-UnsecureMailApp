@@ -26,12 +26,21 @@ include_once("utility.php");
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
+            <?php if(empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) { // not logged?>
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="loginForm.php">Connexion</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+            <?php } else {?>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.php">Accueil</a>
+                </li>
+
+            <?php if($singleton->isAdmin($_SESSION["id"])) {?>
+                <li class="nav-item">
+                    <a class="nav-link" href="administration.php">Administration</a>
+                </li>
+                <?php }?>
+            <?php }?>
         </ul>
     </div>
 
