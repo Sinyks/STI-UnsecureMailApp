@@ -52,14 +52,6 @@ class Singleton
         return $query->fetchAll();
     }
 
-    /**
-     * that were too easy
-     * @param $string
-     */
-    private function homeMadeSQLSanitier($string){
-        return str_replace(";","",$string);
-    }
-
     ////////////////////////Unsecure App Function///////////////////////////////////////
 
     public function getUsers(){
