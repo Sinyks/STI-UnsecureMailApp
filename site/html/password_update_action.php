@@ -3,7 +3,10 @@
 
 include_once('./fragements/header.php');
 
-include_once("utility.php");
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+    header("location: ./index.php");
+    exit;
+}
 
 // check if POST is set correctly
 if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] != true || !isset($_POST["passwordChange"])) {

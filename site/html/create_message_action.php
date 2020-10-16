@@ -1,8 +1,11 @@
 <?php
 
-include_once("utility.php");
+include_once('./fragements/header.php');
 
-
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+    header("location: ./index.php");
+    exit;
+}
 
 // check if POST is set correctly
 if (!isset($_POST["SelectReceiver"]) || !isset($_POST["Subject"]) || !isset($_POST["Content"])) {
@@ -26,5 +29,5 @@ try {
     exit;
 }
 
-echo "<p>Le message a ete envoyer</p>";
+echo "<p>Le message a bien été envoyé</p>";
 echo "<a href='dashboard.php' > retour au tableau de bord</a>";
