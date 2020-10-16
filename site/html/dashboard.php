@@ -1,5 +1,5 @@
 <?php
-include_once('./fragements/header.php');
+include('./fragements/header.php');
 if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
     header("location: ./loginForm.php");
     exit;
