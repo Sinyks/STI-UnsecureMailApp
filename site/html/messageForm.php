@@ -16,7 +16,7 @@ try {
 }
 ?>
 
-<form method="post" action="createMessage.php">
+<form method="post" action="create_message_action.php">
     <div class="form-group">
         <?php if (isset($answerToId)){?>
             <input type="hidden" class="form-control" name="SelectReceiver" value="<?php echo $answerToId ?> ">

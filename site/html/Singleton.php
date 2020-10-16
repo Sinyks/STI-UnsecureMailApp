@@ -111,7 +111,7 @@ class Singleton
         $sql = "SELECT * FROM Message WHERE Message.id = :id";
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(':id',$this->homeMadeSQLSanitier($id));
+        $query->bindValue(':id',$id);
         $query->execute();
 
         return $query->fetch();
@@ -122,10 +122,10 @@ class Singleton
                 VALUES (:username, :password, :validity, :hasadminprivilege)";
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":username",$this->homeMadeSQLSanitier($username));
-        $query->bindValue(":password",$this->homeMadeSQLSanitier($password));
-        $query->bindValue(":validity",$this->homeMadeSQLSanitier($validity));
-        $query->bindValue(":hasadminprivilege",$this->homeMadeSQLSanitier($HasAdminPrivilege));
+        $query->bindValue(":username",$username);
+        $query->bindValue(":password",$password);
+        $query->bindValue(":validity",$validity);
+        $query->bindValue(":hasadminprivilege",$HasAdminPrivilege);
         $query->execute();
     }
 
@@ -134,10 +134,10 @@ class Singleton
                 VALUES (:sender, :receiver, :content, :subject, :receptiondate)";
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":sender",$this->homeMadeSQLSanitier($idSender));
-        $query->bindValue(":receiver",$this->homeMadeSQLSanitier($idReceiver));
-        $query->bindValue(":content",$this->homeMadeSQLSanitier($content));
-        $query->bindValue(":subject",$this->homeMadeSQLSanitier($subject));
+        $query->bindValue(":sender",$idSender);
+        $query->bindValue(":receiver",$idReceiver);
+        $query->bindValue(":content",$content);
+        $query->bindValue(":subject",$subject);
         $query->bindValue(":receptiondate",time());
 
         $query->execute();
@@ -146,14 +146,14 @@ class Singleton
     public function deleteMessageById($id){
         $sql = "DELETE FROM Message WHERE id = :id";
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":id",$this->homeMadeSQLSanitier($id));
+        $query->bindValue(":id",$id);
         $query->execute();
     }
 
     public function deleteUserById($id){
         $sql = "DELETE FROM Coworker WHERE id = :id";
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":id",$this->homeMadeSQLSanitier($id));
+        $query->bindValue(":id",$id);
         $query->execute();
     }
 
@@ -169,12 +169,23 @@ class Singleton
 
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":id",$this->homeMadeSQLSanitier($id));
+        $query->bindValue(":id",$id);
         if(!empty($newPassword)){
-            $query->bindValue(":password",$this->homeMadeSQLSanitier($newPassword));
+            $query->bindValue(":password",$newPassword);
         }
-        $query->bindValue(":validity",$this->homeMadeSQLSanitier($newValidity));
-        $query->bindValue(":hasadminprivilege",$this->homeMadeSQLSanitier($newHasAdminPrivilege));
+        $query->bindValue(":validity",$newValidity);
+        $query->bindValue(":hasadminprivilege",$newHasAdminPrivilege);
+        $query->execute();
+    }
+
+    public function updatePasswordById($id, $newPassword)
+    {
+        $sql = "UPDATE Coworker SET Password = :password WHERE id = :id";
+
+        $query = $this->objConnection->prepare($sql);
+        $query->bindValue(":id",$id);
+        $query->bindValue(":password",$newPassword);
+
         $query->execute();
     }
 
