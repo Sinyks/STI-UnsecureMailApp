@@ -1,6 +1,12 @@
 <?php
 
-include_once("utility.php");
+
+include_once('./fragements/header.php');
+
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
+    header("location: ./index.php");
+    exit;
+}
 
 // check if POST is set correctly
 if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] != true || !isset($_POST["passwordChange"])) {
@@ -20,7 +26,7 @@ try {
     exit;
 }
 
-echo "<p>Le mot de passe a ete modifie</p>";
+echo "<p>Le mot de passe a bien été modifié</p>";
 echo "<a href='dashboard.php' > retour au tableau de bord</a>";
 
 

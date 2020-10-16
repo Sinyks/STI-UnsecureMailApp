@@ -4,7 +4,7 @@ include_once("./fragements/header.php");
 if (isset($_SESSION["message"]) && !empty($_SESSION["message"])) {
     $message = $_SESSION["message"];
 }else{
-    header( "location: loginForm.php" );
+    header( "location: index.php" );
 }
 ?>
 

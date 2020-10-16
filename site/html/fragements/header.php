@@ -28,11 +28,11 @@ include_once("utility.php");
         <ul class="navbar-nav mr-auto">
             <?php if(empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) { // not logged?>
             <li class="nav-item">
-                <a class="nav-link" href="loginForm.php">Connexion</a>
+                <a class="nav-link" href="index.php">Connexion</a>
             </li>
             <?php } else {?>
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">Accueil</a>
+                    <a class="nav-link" href="dashboard.php">Messagerie</a>
                 </li>
 
             <?php if($singleton->isAdmin($_SESSION["id"])) {?>

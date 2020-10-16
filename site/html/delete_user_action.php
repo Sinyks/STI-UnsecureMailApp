@@ -1,24 +1,18 @@
 <?php
 include_once("utility.php");
-?>
 
-<?php
-try {
+if (empty($_SESSION) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
 
-    // Create (connect to) SQLite database in file
-    $file_db = new PDO('sqlite:/usr/share/nginx/databases/database.sqlite');
-    // Set errormode to exceptions
-    $file_db->setAttribute(PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-    $_SESSION['message'] = $e->getMessage();
-    header("location: error.php");
+    header("location: ./index.php");
     exit;
-
+} else {
+    if (!$singleton->isAdmin($_SESSION["id"])) {
+        header("location: ./dashboard.php");
+        exit;
+    }
 }
-
 ?>
+
 
 <?php
 try {
