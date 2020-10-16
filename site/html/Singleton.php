@@ -148,12 +148,22 @@ class Singleton
         $query->execute();
     }
 
-    public function UpdateUserById($id,$newPassword,$newValidity,$newHasAdminPrivilege){
-        $sql = "UPDATE Coworker SET Password = :password, Validity = :validity, HasAdminPrivilege = :hasadminprivileg   
+    public function updateUserById($id,$newPassword,$newValidity,$newHasAdminPrivilege){
+
+        if(empty($newPassword)){
+            $sql = "UPDATE Coworker SET Validity = :validity, HasAdminPrivilege = :hasadminprivilege   
                 WHERE id = :id";
+        } else {
+            $sql = "UPDATE Coworker SET Password = :password, Validity = :validity, HasAdminPrivilege = :hasadminprivilege   
+                WHERE id = :id";
+        }
+
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(":password",$this->homeMadeSQLSanitier($newPassword));
+        $query->bindValue(":id",$this->homeMadeSQLSanitier($id));
+        if(!empty($newPassword)){
+            $query->bindValue(":password",$this->homeMadeSQLSanitier($newPassword));
+        }
         $query->bindValue(":validity",$this->homeMadeSQLSanitier($newValidity));
         $query->bindValue(":hasadminprivilege",$this->homeMadeSQLSanitier($newHasAdminPrivilege));
         $query->execute();

@@ -129,64 +129,65 @@ $result = $singleton->getUsers();
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <form action="./update_user_action.php" method="post">
 
-                            <?php
-                            include('./form/userFormUpdate.php');
-                            ?>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <form action='/index.php' method='post'> <!-- voir comment faire un post-->
-                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
+                            <div class="modal-body">
+
+                                <?php
+                                include('./form/userFormUpdate.php');
+                                ?>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">
                                     Modifier
                                 </button>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div class='col-sm text-center'>
+    </div>
+
+    <div class='col-sm text-center'>
 
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal"
-                    data-target="#deleteModal<?php echo $user->id ?>">
-                Supprimer
-            </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#deleteModal<?php echo $user->id ?>">
+            Supprimer
+        </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="deleteModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
-                 aria-labelledby="deleteModal<?php echo $user->id ?>Label"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title " id="deleteModal<?php echo $user->id ?>Label">Confirmation</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
+             aria-labelledby="deleteModal<?php echo $user->id ?>Label"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="deleteModal<?php echo $user->id ?>Label">Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Etes-vous certain-e de vouloir supprimer <?php echo $user->Username ?> ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <form action='/delete_user_action.php' method='get'>
+                            <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
+                                Supprimer
                             </button>
-                        </div>
-                        <div class="modal-body">
-                            Etes-vous certain-e de vouloir supprimer <?php echo $user->Username ?> ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <form action='/delete_user_action.php' method='get'>
-                                <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
-                                    Supprimer
-                                </button>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
 <?php }//end foreach ?>
