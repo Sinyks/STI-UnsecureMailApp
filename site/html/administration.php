@@ -4,7 +4,7 @@ include_once('./fragements/header.php');
 
 
 <body class="starter-template">
-<h1> Espace Administrateur</h1>
+<h1 class="text-center"> Espace Administrateur</h1>
 <?php
 try {
 
@@ -19,7 +19,6 @@ try {
 }
 
 $result = $singleton->getUsers();
-
 ?>
 
 <div class='col-sm text-center p-3 mb-2'>
@@ -52,152 +51,143 @@ $result = $singleton->getUsers();
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary" >Creer</button>
+                        <button type="submit" class="btn btn-primary">Creer</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-</div>
+<div class="container">
+    <?php foreach ($result
+
+                   as $user) { ?>
+        <div class="row p-3 align-items-center bg-secondary">
+
+            <div class="col-sm text-center text-white">
+
+                <bold class="font-weight-bold">
+                    Utilisateur</br>
+                </bold>
+
+                <?php echo $user->Username; ?>
+
+            </div>
 
 
-<?php foreach ($result as $user) { ?>
-    <div class='row p-3 mb-2 align-items-center bg-info'>
+            <div class='col-sm text-center text-white'>
 
-        <div class='col-sm text-center text-white'>
 
-            <bold class='font-weight-bold'>
-                Utilisateur</br>
-            </bold>
+                <bold class='font-weight-bold'>
+                    Validité</br>
+                </bold>
 
-            <?php echo $user->Username; ?>
+                <?php
+                if ($user->Validity == 1) {
+                    echo "Valide";
+                } else {
+                    echo "Invalide";
+                }
+                ?>
+            </div>
 
+
+            <div class='col-sm text-center text-white'>
+
+                <bold class='font-weight-bold'>
+                    Hash du mot de passe</br>
+                </bold>
+
+                <?php echo $user->Password; ?>
+
+            </div>
+
+
+            <div class='col-sm text-center text-white'>
+
+                <bold class='font-weight-bold'>
+                    Type d'utilisateur</br>
+                </bold>
+                <?php
+                if ($user->HasAdminPrivilege) {
+                    echo "Admin";
+                } else {
+                    echo "Collaborateur";
+                }
+                ?>
+
+            </div>
+
+            <div class='col-sm text-center'>
+
+
+                <a class="btn btn-warning" data-toggle="collapse" href="#collapse<?php echo $user->id ?>update"
+                   role="button"
+                   aria-expanded="false" aria-controls="collapse<?php echo $user->id ?>update">Modifier
+                </a>
+
+
+            </div>
+
+
+            <div class='col-sm text-center'>
+
+                <button class="btn btn-danger" type="button" data-toggle="collapse"
+                        data-target="#collapse<?php echo $user->id ?>delete" aria-expanded="false"
+                        aria-controls="collapse<?php echo $user->id ?>delete">Supprimer
+                </button>
+            </div>
         </div>
-        <div class='col-sm text-center text-white'>
 
 
-            <bold class='font-weight-bold'>
-                Validité</br>
-            </bold>
-
-            <?php
-            if ($user->Validity == 1) {
-                echo "Valide";
-            } else {
-                echo "Invalide";
-            }
-            ?>
-        </div>
-        <div class='col-sm text-center text-white'>
-
-            <bold class='font-weight-bold'>
-                Hash du mot de passe</br>
-            </bold>
-
-            <?php echo $user->Password; ?>
-
-        </div>
-        <div class='col-sm text-center text-white'>
-
-            <bold class='font-weight-bold'>
-                Type d'utilisateur</br>
-            </bold>
-            <?php
-            if ($user->HasAdminPrivilege) {
-                echo "Admin";
-            } else {
-                echo "Collaborateur";
-            }
-            ?>
-
-        </div>
-
-        <div class='col-sm text-center'>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning" data-toggle="modal"
-                    data-target="#updateModal<?php echo $user->id ?>">
-                Modifier
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="updateModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
-                 aria-labelledby="updateModal<?php echo $user->id ?>Label"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title "
-                                id="updateModal<?php echo $user->id ?>Label"><?php echo $user->Username ?></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+        <div class="row p-3  ">
+            <div class='col-sm text-center'>
+                <div class="collapse multi-collapse" id="collapse<?php echo $user->id ?>update">
+                    <div class="card card-body">
                         <form action="./update_user_action.php" method="post">
-
-                            <div class="modal-body">
+                            <div>
 
                                 <?php
                                 include('./form/userFormUpdate.php');
                                 ?>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-primary">
+                            <div>
+                                <button type="submit" class="btn btn-warning">
                                     Modifier
                                 </button>
+                            </div>
                         </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm text-center'>
+                <div class="collapse multi-collapse" id="collapse<?php echo $user->id ?>delete">
+                    <div class="card card-body ">
+
+
+                        <div>
+                            Etes-vous certain-e de vouloir supprimer <?php echo $user->Username ?> ?
+                        </div>
+                        <div>
+                            <form action='/delete_user_action.php' method='get'>
+                                <button type="submit" class="btn btn-danger" name='id' value='<?php echo $user->id ?>'>
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
 
-    <div class='col-sm text-center'>
-
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#deleteModal<?php echo $user->id ?>">
-            Supprimer
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="deleteModal<?php echo $user->id ?>" tabindex="-1" role="dialog"
-             aria-labelledby="deleteModal<?php echo $user->id ?>Label"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title " id="deleteModal<?php echo $user->id ?>Label">Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Etes-vous certain-e de vouloir supprimer <?php echo $user->Username ?> ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <form action='/delete_user_action.php' method='get'>
-                            <button type="submit" class="btn btn-primary" name='id' value='<?php echo $user->id ?>'>
-                                Supprimer
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </div>
-
-<?php }//end foreach ?>
+    <?php }//end foreach ?>
 </div>
-
 
 </body>
 

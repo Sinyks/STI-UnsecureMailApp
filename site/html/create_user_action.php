@@ -27,24 +27,8 @@ try {
     $_SESSION['message'] = $e->getMessage();
     header("location: error.php");
     exit;
-
 }
-//header("location: ./administration.php");
+ header("location: ./administration.php");
 ?>
-
-<div>
-
-    <?php
-    echo $_POST["username"]." ";
-    echo $_POST["passwordUnhashed"]." ";
-    echo $_POST["validityRadios"]." ";
-    echo $_POST["adminRadios"]." ";
-
-    ?>
-
-    <a href="/administration.php">Back To Home</a>
-
-</div>
-
 
 
