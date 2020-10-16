@@ -76,6 +76,15 @@ class Singleton
         return $query->fetch();
     }
 
+    public function getUsernameById($id){
+        $sql = "SELECT Username FROM Coworker WHERE id = :value";
+        $query = $this->objConnection->prepare($sql);
+        $query->bindValue(':value',$id);
+        $query->execute();
+
+        return $query->fetch();
+    }
+
     public function getUserById($id){
 
         $sql = "SELECT * FROM Coworker WHERE id = :value";
@@ -92,7 +101,7 @@ class Singleton
         $sql = "SELECT * FROM Message WHERE Message.Receiver = :id";
 
         $query = $this->objConnection->prepare($sql);
-        $query->bindValue(':id',$this->homeMadeSQLSanitier($id));
+        $query->bindValue(':id',$id);
         $query->execute();
 
         return $query->fetchAll();
@@ -180,17 +189,5 @@ class Singleton
 
     }
 
-    /////////////////////////Exemples//////////////////////////////////////////////////
-    public function getAllAlbums()
-    {
-        $result = $this->executeSqlRequest("SELECT idAlbum, albTitle, artName, albReleaseDate, catName
-    FROM t_album
-    INNER JOIN t_belong ON idfkAlbum = idAlbum
-    INNER JOIN t_track ON idTrack = t_belong.idfkTrack
-    INNER JOIN t_interpret ON t_interpret.idfkTrack = idTrack
-    INNER JOIN t_artist ON idfkArtist = idArtist
-    INNER JOIN t_category ON t_category.idCategory = t_track.fkCategory;");
-        return $result;
-    }
 
 }

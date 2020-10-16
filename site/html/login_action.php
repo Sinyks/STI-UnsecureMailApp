@@ -8,27 +8,32 @@ if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])){
     exit;
 }
 
-// print_r($_POST);
-
-$user = $singleton->getUserByUsername($_POST["inputUsername"]);
+try {
+    $user = $singleton->getUserByUsername($_POST["inputUsername"]);
+}catch (PDOException $e){
+    $_SESSION["message"] = $e->getMessage();
+    header("location: error.php");
+    exit;
+}
 
 if ($user){
     if ($user->Username == $_POST["inputUsername"] && $user->Password == $_POST["inputPassword"]) {
+        if ($user->Validity == 0){
+            $_SESSION['message'] = "Validité dépassé";
+            header("location: error.php");
+            exit;
+        }
         // user is correct
         $_SESSION["id"] = $user->id;
         $_SESSION["logged_in"] = true;
-        header("location: ./index.php");
+        header("location: ./dashboard.php");
     } else {
         $_SESSION['message'] = "informations incorrect";
         header("location: error.php");
+        exit;
     }
 } else {
     $_SESSION['message'] = "nobody";
     header("location: error.php");
+    exit;
 }
-
-
-
-
-
-
