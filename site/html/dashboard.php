@@ -3,11 +3,16 @@
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
   header('location : ./loginForm.php');
 }
-
 include_once('./fragements/header.php');
 
 $id = $_SESSION['id'];
-$messages = $singleton->getReceivedMessagesByReceiverId($id);
+try {
+    $messages = $singleton->getReceivedMessagesByReceiverId($id);
+}catch (PDOException $e){
+    $_SESSION["message"] = $e->getMessage();
+    header("location: error.php");
+    exit;
+}
 ?>
 
 <h2 class="text-center">Mes messages</h2>
@@ -36,11 +41,12 @@ $messages = $singleton->getReceivedMessagesByReceiverId($id);
                     <?php echo $message->Content ?>
                 </p>
                 <div class="input-group mb-3">
-                    <form method="post" action="deleteMessage.php" class="">
-                        <input type="hidden" name="idMessage" value="<?php echo $message->id ?>">
+                    <form method="post" action="deleteMessage.php" >
+                        <input type="hidden" name="idMessage" value="<?php echo $message->id; ?>">
                         <input type="submit" class="btn btn-danger" name="delete" value="Supprimer"/>
                     </form>
-                    <form method="post" action="createMessage.php">
+                    <form method="post" action="messageForm.php">
+                        <input type="hidden" name="AnswerTo" value="<?php echo $message->Sender; ?>" />
                         <input type="submit" class="btn btn-primary" name="create" value="repondre"/>
                     </form>
                 </div>
@@ -56,7 +62,7 @@ $messages = $singleton->getReceivedMessagesByReceiverId($id);
 
 <div id="MessageForm" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
     <div class="card-body">
-        <?php include("./form/messageForm.php")?>
+        <?php include("./messageForm.php")?>
     </div>
 </div>
 

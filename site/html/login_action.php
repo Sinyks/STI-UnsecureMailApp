@@ -8,9 +8,8 @@ if (!isset($_POST["inputUsername"]) || !isset($_POST["inputPassword"])){
     exit;
 }
 
-// print_r($_POST);
 try {
-$user = $singleton->getUserByUsername($_POST["inputUsername"]);
+    $user = $singleton->getUserByUsername($_POST["inputUsername"]);
 }catch (PDOException $e){
     $_SESSION["message"] = $e->getMessage();
     header("location: error.php");
