@@ -18,6 +18,11 @@ try {
 
 if ($user){
     if ($user->Username == $_POST["inputUsername"] && $user->Password == $_POST["inputPassword"]) {
+        if ($user->Validity == 0){
+            $_SESSION['message'] = "Validité dépassé";
+            header("location: error.php");
+            exit;
+        }
         // user is correct
         $_SESSION["id"] = $user->id;
         $_SESSION["logged_in"] = true;
@@ -25,8 +30,10 @@ if ($user){
     } else {
         $_SESSION['message'] = "informations incorrect";
         header("location: error.php");
+        exit;
     }
 } else {
     $_SESSION['message'] = "nobody";
     header("location: error.php");
+    exit;
 }
