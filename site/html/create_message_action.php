@@ -2,7 +2,7 @@
 
 include_once("utility.php");
 
-print_r($_POST);
+
 
 // check if POST is set correctly
 if (!isset($_POST["SelectReceiver"]) || !isset($_POST["Subject"]) || !isset($_POST["Content"])) {
@@ -11,7 +11,7 @@ if (!isset($_POST["SelectReceiver"]) || !isset($_POST["Subject"]) || !isset($_PO
     exit;
 }
 
-// Creation du message
+
 
 $idSender = $_SESSION["id"];
 $idReceiver = $_POST["SelectReceiver"];

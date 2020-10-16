@@ -1,5 +1,8 @@
 <?php
 
+
+include_once('./fragements/header.php');
+
 include_once("utility.php");
 
 // check if POST is set correctly
@@ -20,7 +23,7 @@ try {
     exit;
 }
 
-echo "<p>Le mot de passe a ete modifie</p>";
+echo "<p>Le mot de passe a bien été modifié</p>";
 echo "<a href='dashboard.php' > retour au tableau de bord</a>";
 
 
