@@ -24,6 +24,22 @@ $ cd STI-UnsecureMailApp
 $ ./start.sh
 ```
 3. le site est maintenant lancé vous pouvez vous y rendre sur http://localhost:8080
+4. Pour terminer la tâche du serveur lancer le script ``./stop.sh``
+
+## Contenue de la base de donnée
+
+Les personnes suivantes existent déjà dans la base de donnée: (__Attention à la casse des noms__ )
+
+| Nom d'utilisateur | Mot de passe | rôle           | Validité |
+| ----------------- | ------------ | -------------- | -------- |
+| carl              | pass         | collaborateur  | valide   |
+| Sacha             | 1234         | Administrateur | valide   |
+| Alban             | 1234         | Administrateur | valide   |
+| Steve             | 1234         | Collaborateur  | valide   |
+| Daniel            | 1234         | Collaborateur  | invalid  |
+
+
+
 
 ## Se connecter au site
 
@@ -51,10 +67,6 @@ Depuis le tableau de bord vous avez également la possibilité de répondre aux 
 
 ![](./img/answer_show.png)
 
-
-
-
-
 ![](./img/answer.png)
 
 ## Supprimer un message
@@ -81,7 +93,7 @@ En vous y rendant vous aurez la possibilité d'administrer,créer et supprimer d
 
 ![admincreate](./img/adminCreate.png)
 
-### Suppression
+### Suppression d'utilisateur
 
 ![adminupdatedelete](./img/adminUpdateDelete.png)
 
