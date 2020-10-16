@@ -94,6 +94,7 @@ En vous y rendant vous aurez la possibilité d'administrer,créer et supprimer d
 ![admincreate](./img/adminCreate.png)
 
 ### Suppression d'utilisateur
+__Attention la suppresssion d'un utilisateur est définitive__
 
 ![adminupdatedelete](./img/adminUpdateDelete.png)
 
